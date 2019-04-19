@@ -1,0 +1,67 @@
+<div class="res-container">
+  <div class="date-start">
+    <div class="form-group col-md-12">
+      <label for="txtDateStart">Start</label>
+      <input type="date" #txtDateStart class="form-control" name="txtDateStart" id="txtDateStart" placeholder="mm/dd/yyyy" (change)="calculateTimeBetweenDates(txtDateStart.value, txtDateEnd.value, txtDateStart)">
+    </div>
+  </div>
+  <div class="date-end">
+    <div class="form-group col-md-12">
+      <label for="txtDateEnd">End</label>
+      <input type="date" #txtDateEnd class="form-control" name="txtDateEnd" id="txtDateEnd" placeholder="mm/dd/yyyy" [min]="txtDateStart.value" (change)="calculateTimeBetweenDates(txtDateStart.value, txtDateEnd.value, txtDateEnd)">
+    </div>
+  </div>
+  <div class="time-calc">
+    <div class="form-group time-calc-days-title">Work days</div>
+    <div class="form-group time-calc-days">{{resourceAllocationAssessmentObject ? resourceAllocationAssessmentObject.workDays : '0'}}</div>
+    <div class="form-group time-calc-hours-title">Hours</div>
+    <div class="form-group time-calc-hours">{{resourceAllocationAssessmentObject ? resourceAllocationAssessmentObject.hours : '0'}}</div>
+  </div>
+  <div class="all-res">
+    <div class="all-res-title">All resources</div>
+    <div class="all-res-filter"><input type="search" name="txtAllResourcesFilter" id="txtAllResourcesFilter" (keyup)="onAllResourcesFilter($event)" (search)="onAllResourcesFilter($event)" placeholder="Filter..." class="form-control"></div>
+    <div class="all-res-list">
+      <div class="list-group" id="list-all-resources" role="tablist">
+        <div *ngFor="let resource of resourceService.listOfAllResourcesFiltered">
+          <div class="list-group-item list-group-item-action all-res-item" role="tab" *ngIf="resource" (click)="onSelectResource(resource)">
+            <label>{{resource.fullName}}</label>
+            <i class="material-icons">input</i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="all-res-action">
+        
+    </div>
+  </div>
+  <div class="sel-res">
+      <div class="sel-res-title">Selected resources</div>
+      <div class="sel-res-list">
+        <div class="list-group" id="list-selected-resources" role="tablist">
+          <div *ngFor="let resource of allSelectedResources">
+            <div class="list-group-item sel-res-item" *ngIf="resource">
+                <div class="name-label label">Name</div>
+                <div class="allocation-label label">Allocation</div>
+                <div class="remove"><i class="material-icons btn btn-info">delete</i></div>
+                <div class="name">{{resource.fullName}}</div>
+                <div class="allocation">
+                  <select [id]="'lstAllocation_' + resource.id" class="form-control">
+                    <option value="100">100%</option>
+                    <option value="50">50%</option>
+                    <option value="25">25%</option>
+                  </select>
+                </div>
+                <div class="in-label label">In</div>
+                <div class="out-label label">Out</div>
+                <div class="in">
+                    <input type="date" class="form-control" [id]="'txtDateStart' + resource.id" placeholder="mm/dd/yyyy">
+                </div>
+                <div class="out">
+                    <input type="date" class="form-control" [id]="'txtDateEnd' + resource.id" placeholder="mm/dd/yyyy">
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

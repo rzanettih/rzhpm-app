@@ -1,0 +1,26 @@
+<div class="page-fixed-top">
+    <div class="row">
+        <div id="page-title">
+        Projects
+        </div>
+    </div>
+    <div class="row mb-5 ml-2">
+        <div class="col-md-3"><div class="btn btn-primary" data-toggle="modal" data-target="#projectAdd" style="cursor: pointer;">Add a new project</div></div>
+        <div class="col-md-9"><input type="search" (keyup)="onFilter($event)" (search)="onFilter($event)" placeholder="Filter..." class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right"><label class="badge badge-info" id="lblQttFiltered"></label></div>
+    </div>
+</div>
+<div class="container content-page-fixed-top">
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group" *ngFor="let projectItem of service.listOfAllProjectsFiltered">
+                <li class="list-group-item" *ngIf="projectItem"><app-project-list-item [projectItem]="projectItem" [allHolidays]="service.listOfAllHolidays"></app-project-list-item></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" #resourceEdit id="projectAdd" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"><app-new-project #newProjectComponent></app-new-project></div>

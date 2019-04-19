@@ -1,0 +1,51 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Add a new resource</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-9 mb-3">
+                        <input name="fullName" #fullName="ngModel" [(ngModel)]="service.itemData.fullName" placeholder="Full Name" class="form-control" required>
+                        <div *ngIf="fullName.invalid && fullName.touched" class="text-danger pt-2">Full name is required</div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="custom-control custom-checkbox mt-2" style="cursor:pointer">
+                            <input type="checkbox" class="custom-control-input" id="internal" name="internal" #internal="ngModel" [(ngModel)]="service.itemData.internal">
+                            <label class="custom-control-label" for="internal">Internal</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mb-3">
+                        <input name="email" #email="ngModel" [(ngModel)]="service.itemData.email" placeholder="full.name@provider.com" class="form-control" required>
+                        <div *ngIf="email.invalid && email.touched" class="text-danger pt-2">Email is required</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group  col-md-6 mb-3">
+                        <input name="vendor" #vendor="ngModel" [(ngModel)]="service.itemData.vendor" placeholder="Vendor name" class="form-control" [readonly]="internal.value" [required]="!internal.value">
+                        <div *ngIf="vendor.invalid && vendor.touched" class="text-danger pt-2">Vendor is required</div>
+                    </div>
+                    <div class="form-group  col-md-6 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$/hour</span>
+                            </div>
+                            <input name="rateHour" #rateHour="ngModel" [(ngModel)]="service.itemData.rateHour" type="number" step="0.01" data-number-to-fixed="2" placeholder="0.00" class="form-control" required>
+                        </div>
+                        <div *ngIf="rateHour.invalid && rateHour.touched" class="text-danger pt-2">Enter resource's rate per hour in US$</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="CloseAddResourceModal">Close</button>
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Add resource</button>
+            </div>
+        </form>
+    </div>
+</div>

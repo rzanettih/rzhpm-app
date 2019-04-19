@@ -1,0 +1,45 @@
+<div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">New project</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+          <div class="modal-body">
+              <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="shortName">Project  name:</label>
+                      <input name="shortName" #shortName="ngModel" [(ngModel)]="service.itemData.shortName" placeholder="Project name" class="form-control" required>
+                      <div *ngIf="shortName.invalid && shortName.touched" class="text-danger pt-2">Project's short name is required</div>
+                  </div>
+              </div>
+              <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="projectManager">Project manager name:</label>
+                        <input name="projectManager" #projectManager="ngModel" [(ngModel)]="service.itemData.projectManager" placeholder="Project manager name" class="form-control">
+                    </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="startDate">Start date:</label>
+                    <input name="startDate" type="date" #startDate="ngModel" [(ngModel)]="service.itemData.startDate" placeholder="mm/dd/yyyy" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="deliveryDate">Delivery date:</label>
+                    <input name="deliveryDate" type="date" #deliveryDate="ngModel" [(ngModel)]="service.itemData.deliveryDate" placeholder="mm/dd/yyyy" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="workFrontID">Workfront ID:</label>
+                    <input name="workFrontID" #workFrontID="ngModel" [(ngModel)]="service.itemData.workFrontID" placeholder="WF_ID" class="form-control">
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="CloseAddProjectModal">Close</button>
+              <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Add project</button>
+          </div>
+      </form>
+    </div>
+</div>

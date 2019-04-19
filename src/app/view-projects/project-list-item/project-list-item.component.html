@@ -1,0 +1,41 @@
+<div id="projectItemContainer">
+    <ng-template #popDates>
+        <div *ngIf="projectItem.startDate">
+            <div class="col-md-12">
+                <label class="project-list-item-label">Forecast working days:</label>
+                <p class="project-manager">{{projectItem.workDays}}</p>
+            </div>
+            <div class="col-md-12">
+                <label class="project-list-item-label">Elapsed working days:</label>
+                <p class="project-manager">{{elapsedDays}}</p>
+            </div>
+            <div class="col-md-12">
+                <label class="project-list-item-label">Days to completion:</label>
+                <p class="project-manager">{{daysToCompletion}}</p>
+            </div>
+        </div>
+        <div *ngIf="!projectItem.startDate">Dates not informed </div>
+    </ng-template>
+    <div id="projectName">
+        <p class="project-name">{{projectItem.shortName}}</p>
+    </div>
+    <div id="projectManager">
+        <label class="project-list-item-label">Project manager:</label>
+        <p [class]="projectItem.projectManager && projectItem.projectManager != '' ? 'project-manager' : 'project-manager-empty'">{{projectItem.projectManager && projectItem.projectManager != "" ? projectItem.projectManager : '[N/D]'}}</p>
+    </div>
+    <div id="workfrontID">
+        <label class="project-list-item-label">WorkFront ID:</label>
+        <p [class]="projectItem.workFrontID && projectItem.workFrontID != '' ? 'project-manager' : 'project-manager-empty'">{{projectItem.workFrontID && projectItem.workFrontID != "" ? projectItem.workFrontID : '[N/D]'}}</p>
+    </div>
+    <div id="startDate">
+        <label class="project-list-item-label" 
+            [popover]="popDates" 
+            popoverTitle="Dates"
+            triggers="mouseenter:mouseleave">Start date:</label>
+        <p [class]="projectItem.startDate && projectItem.startDate != '' ? 'project-manager' : 'project-manager-empty'">{{projectItem.startDate && projectItem.startDate != "" ? projectItem.startDate + ' (' + weekDayStart + ')' : "[N/D]"}}</p>
+    </div>
+    <div id="deliveryDate">
+        <label class="project-list-item-label">Delivery date:</label>
+        <p [class]="projectItem.deliveryDate && projectItem.deliveryDate != '' ? 'project-manager' : 'project-manager-empty'">{{projectItem.deliveryDate && projectItem.deliveryDate != ""? projectItem.deliveryDate + ' (' + weekDayDelivery + ')' : "[N/D]"}}</p>
+    </div>
+</div>

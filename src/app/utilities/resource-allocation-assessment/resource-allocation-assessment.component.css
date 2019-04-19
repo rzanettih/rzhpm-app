@@ -1,0 +1,207 @@
+.res-container {
+ width: 100%;
+ display: grid;
+ grid-template-columns: auto auto auto auto;
+ grid-template-rows: auto;
+ grid-template-areas: 
+    "start end time-calc ."
+    "all-res sel-res sel-res sel-res";
+}
+
+.date-start {
+    grid-area: start;
+}
+
+.date-end {
+    grid-area: end;
+}
+
+.time-calc {
+    grid-area: time-calc;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: ayto;
+    grid-template-areas: 
+        "days-title hours-title"
+        "days hours";
+}
+
+.time-calc div {
+    width: 100%;
+}
+
+.time-calc-days-title {
+    grid-area: days-title;
+    font-size: 12px;
+}
+
+.time-calc-days {
+    grid-area: days;
+}
+
+.time-calc-hours-title {
+    grid-area: hours-title;
+    font-size: 12px;
+}
+
+.time-calc-hours {
+    grid-area: hours;
+}
+
+.all-res {
+    grid-area: all-res;
+    display: grid;
+    padding: 12px;
+    grid-template-areas: 
+        "all-res-title"
+        "all-res-filter"
+        "all-res-list"
+        "all-res-action";
+}
+
+.all-res-title {
+    grid-area: all-res-title;
+    font-size: 12px;
+}
+.all-res-filter {
+    grid-area: all-res-filter;
+}
+.all-res-list {
+    grid-area: all-res-list;
+    height: 200px;
+    margin-top: 10px;
+    overflow:auto;
+    overflow-x:hidden;
+    position: relative;
+}
+
+/*
+ *  STYLE 6
+ */
+
+ .all-res-list::-webkit-scrollbar-track
+ {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+     background-color: #F5F5F5;
+ }
+ 
+ .all-res-list::-webkit-scrollbar
+ {
+     width: 10px;
+     background-color: #F5F5F5;
+ }
+ 
+ .all-res-list::-webkit-scrollbar-thumb
+ {
+     background-color: #F90;	
+     background-image: -webkit-linear-gradient(45deg,
+                                               rgba(255, 255, 255, .2) 25%,
+                                               transparent 25%,
+                                               transparent 50%,
+                                               rgba(255, 255, 255, .2) 50%,
+                                               rgba(255, 255, 255, .2) 75%,
+                                               transparent 75%,
+                                               transparent);
+ }
+ 
+
+.all-res-item {
+    display: grid;
+    grid-template-columns: auto 20px;
+    grid-template-areas: "label icon";
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.all-res-item:hover {
+    background-color: #F5F5F5;
+}
+
+.all-res-item label {
+    grid-area: label;
+    margin: 0;
+    padding-top: 2px;
+    cursor: pointer;
+}
+.all-res-item i {
+    grid-area: icon;
+    cursor: pointer;
+}
+.all-res-action {
+    grid-area: all-res-action;
+}
+
+.sel-res {
+    grid-area: sel-res;
+    padding: 12px;
+    display: grid;
+    grid-template-areas: 
+        "title"
+        "list";
+}
+
+.sel-res-title {
+    grid-area: title;
+    font-size: 12px;
+}
+
+.sel-res-list {
+    grid-area: list;
+    height: 240px;
+    margin-top: 10px;
+    overflow:auto;
+    overflow-x:hidden;
+    position: relative;
+}
+
+/*
+ *  STYLE 6
+ */
+
+ .sel-res-list::-webkit-scrollbar-track
+ {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+     background-color: #F5F5F5;
+ }
+ 
+ .sel-res-list::-webkit-scrollbar
+ {
+     width: 10px;
+     background-color: #F5F5F5;
+ }
+ 
+ .sel-res-list::-webkit-scrollbar-thumb
+ {
+     background-color: #F90;	
+     background-image: -webkit-linear-gradient(45deg,
+                                               rgba(255, 255, 255, .2) 25%,
+                                               transparent 25%,
+                                               transparent 50%,
+                                               rgba(255, 255, 255, .2) 50%,
+                                               rgba(255, 255, 255, .2) 75%,
+                                               transparent 75%,
+                                               transparent);
+ }
+
+ .sel-res-item {
+     /* This style is used for arranging the items inside each resource selected */
+     display: grid;
+     grid-auto-columns: auto 10px auto 10px auto  10px auto 10px 30px;
+     grid-template-areas: 
+        "name-label name-label name-label name-label name-label . allocation-label . remove"
+        "name name name name name . allocation . remove"
+        "in-label in-label in-label . out-label out-label out-label . remove"
+        "in in in . out out out . remove";
+}
+
+.sel-res-item .label {font-size: 10px;}
+.name-label {grid-area: name-label}
+.allocation-label {grid-area: allocation-label}
+.remove{grid-area: remove}
+.name {grid-area: name}
+.allocation {grid-area: allocation}
+.in-label {grid-area: in-label}
+.out-label {grid-area: out-label}
+.in {grid-area: in}
+.out {grid-area: out}

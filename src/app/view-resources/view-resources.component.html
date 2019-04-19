@@ -1,0 +1,63 @@
+<div class="page-fixed-top">
+    <div class="row">
+        <div id="page-title">
+        Resources
+        </div>
+    </div>
+    <div class="row mb-5 ml-2">
+        <div class="col-md-3"><div class="btn btn-primary" data-toggle="modal" data-target="#resourceAdd" style="cursor: pointer;">Add a new resource</div></div>
+        <div class="col-md-2">
+            <div class="row" style="padding-top:15px">
+                <div class="col-md-2" style="width:150px; padding-right: 40px"><div class="text-small text-nowrap bd-highlight">Show rates</div></div>
+                <div class="col-md-2"><label class="switch" data-toggle="tooltip" title="View rates">
+                        <input type="checkbox" (change)="visible = !visible">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7"><input type="search" name="resourceFilter" (keyup)="onFilter($event)" (search)="onFilter($event)" placeholder="Filter..." class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right"><label class="badge badge-info" id="lblQttFiltered"></label></div>
+    </div>
+</div>
+<div class="container content-page-fixed-top">
+    <div class="row">
+        <table class="table table-hover" style="font-size: 10pt">
+            <thead>
+                <th scope="col-md-1">Full name</th>
+                <th scope="col-md-6">Email</th>
+                <th scope="col-md-1">Vendor</th>
+                <th scope="col-md-1">$/hr</th>
+                <th scope="col-md-1">$/day</th>
+                <th scope="col-md-1">€/day</th>
+                <th scope="col-md-1">&nbsp;</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let resource of service.listOfAllResourcesFiltered">
+                    <td *ngIf="resource">{{ resource.fullName }}</td>
+                    <td *ngIf="resource">{{ resource.email }}</td>
+                    <td *ngIf="resource">{{ resource.vendor ? resource.vendor : 'Internal' }}</td>
+                    <td *ngIf="resource"><div *ngIf="!visible" class="toggle-visible">$ *** /hour</div><div *ngIf="visible" class="toggle-visible">$ {{ resource.rateHour.toFixed(2) }} /hour</div></td>
+                    <td *ngIf="resource"><div *ngIf="!visible" class="toggle-visible">$ **** /day</div><div *ngIf="visible" class="toggle-visible">$ {{ (resource.rateHour * 8).toFixed(2) }}/day</div> </td>
+                    <td *ngIf="resource"><div *ngIf="!visible" class="toggle-visible">€ **** /day</div><div *ngIf="visible" class="toggle-visible">€ {{ ((resource.rateHour / eurConversion) * 8).toFixed(2) }}/day</div></td>
+                    <td *ngIf="resource"><div class="row">
+                            <div class="col-md-3">
+                                <div data-toggle="modal" data-target="#resourceEdit" title="Edit resource" (click)="onEditResource(resource)"><i class="btn btn-primary material-icons btn_icon">edit</i></div>
+                            </div>
+                            <div class="col-md-3" *ngIf="canDelete"> <!-- This is here but not being used anywhere - 'canDelete' is not declared and the onDeleteResource doesn't delete the resource -->
+                                <div data-toggle="tooltip" title="Delete resource" (click)="onDeleteResource(resource)"><i class="btn btn-danger material-icons btn_icon">delete_forever</i></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+ 
+
+<div class="modal fade" #resourceAdd id="resourceAdd" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"><app-new-resource></app-new-resource></div>
+
+<div class="modal fade" #resourceEdit id="resourceEdit" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"><app-edit-resource #editResourceComponent></app-edit-resource></div>

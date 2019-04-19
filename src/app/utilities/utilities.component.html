@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+        <div id="page-title">
+        Utilities
+        </div>
+    </div>
+    <div class="utilities-header" data-toggle="collapse" data-target="#workDaysCalculator" aria-expanded="false" aria-controls="workDaysCalculator">
+      <div class="icon"><i class="material-icons">keyboard_arrow_down</i></div>
+      <div class="title">Work days calculator between two dates</div>
+    </div>
+    <div class="collapse" id="workDaysCalculator">
+      <div class="utilities-body">
+          <form #daysForm="ngForm" (submit)="onSubmitDateCalculation(daysForm)">
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="txtDate1">Date 1</label>
+                  <input type="date" #txtDate1="ngModel" [(ngModel)]="dateCalculationObj.date1" class="form-control" name="txtDate1" id="txtDate1" placeholder="mm/dd/yyyy" required>
+                  <div *ngIf="txtDate1.invalid && txtDate1.touched" class="text-danger pt-2">This field is required</div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="txtDate2">Date 2</label>
+                  <input type="date" #txtDate2="ngModel" [(ngModel)]="dateCalculationObj.date2" class="form-control" name="txtDate2" id="txtDate2" placeholder="Password" [min]="txtDate1.value" required>
+                  <div *ngIf="txtDate2.invalid && txtDate2.touched" class="text-danger pt-2">This field is required</div>
+                </div>
+                <div class="form-group col-md-4" style="padding-top:30px;">
+                  <button type="submit" class="btn btn-primary" [disabled]="daysForm.invalid">Calculate</button>
+                </div>
+              </div>
+            </form>
+            <div class="alert alert-info" *ngIf="this.dateCalculationObj.workingDays && this.dateCalculationObj.workingDays > 0">There are <b>{{this.dateCalculationObj.workingDays}}</b> (<u>{{this.dateCalculationObj.hours}} hours</u>) working days between <b>{{this.dateCalculationObj.date1}}</b> and <b>{{this.dateCalculationObj.date2}}</b></div>
+      </div>
+    </div>
+    <div class="utilities-header" style="cursor:pointer" data-toggle="collapse" data-target="#currencyConversor" aria-expanded="false" aria-controls="currencyConversor">
+      <div class="icon"><i class="material-icons">keyboard_arrow_down</i></div>
+      <div class="title">US$ and EUR conversion and vice-versa</div>
+    </div>
+    <div class="collapse" id="currencyConversor">
+      <div class="utilities-body">
+        <button type="button" class="btn btn-secondary" (click)="resetCurrencyCalculation()" style="margin-bottom: 10px;">Reset all >></button>
+        <form #currencyForm="ngForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="txtAmountInUSD">Amount in USD $</label>
+              <input type="number" #txtAmountInUSD="ngModel" [(ngModel)]="currencyCalculationObj.amountInUSD" class="form-control" name="txtAmountInUSD" id="txtAmountInUSD" placeholder="1.00">
+            </div>
+            <div class="form-group col-md-2" style="padding-top:35px;">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" #chkDivideUSDBy8 id="chkDivideUSDBy8">
+                <label class="form-check-label" for="chkDivideUSDBy8">
+                  Show EUR divide by 8
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" style="padding-top:30px;">
+              <button type="button" class="btn btn-primary" [disabled]="currencyCalculationObj.amountInUSD <= 0" (click)="onSubmitCurrency(currencyForm, true)">Calculate amount in EUR</button>
+            </div>
+          </div>
+          <div class="alert alert-info" *ngIf="this.currencyCalculationObj.calculated && chkDivideEURBy8.checked">$ {{this.currencyCalculationObj.amountInUSD}} divided by 8 is <b>$ {{this.currencyCalculationObj.USDDividedBy8}}</b></div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="txtAmountInEUR">Amount in EUR €</label>
+              <input type="number" #txtAmountInEUR="ngModel" [(ngModel)]="currencyCalculationObj.amountInEUR" class="form-control" name="txtAmountInEUR" id="txtAmountInEUR" placeholder="1.00">
+            </div>
+            <div class="form-group col-md-2" style="padding-top:35px;">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" #chkDivideEURBy8 id="chkDivideEURBy8">
+                <label class="form-check-label" for="chkDivideEURBy8">
+                  Show USD divide by 8
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" style="padding-top:30px;">
+              <button type="button" class="btn btn-primary" [disabled]="currencyCalculationObj.amountInEUR <= 0" (click)="onSubmitCurrency(currencyForm, false)">Calculate amount in USD</button>
+            </div>
+          </div>
+          <div class="alert alert-info" *ngIf="this.currencyCalculationObj.calculated && chkDivideUSDBy8.checked">€ {{this.currencyCalculationObj.amountInEUR}} divided by 8 is <b>€ {{this.currencyCalculationObj.EURDividedBy8}}</b></div>
+        </form>
+        
+      </div>
+    </div>
+    <div class="utilities-header" style="cursor:pointer" data-toggle="collapse" data-target="#resourcesForecast" aria-expanded="false" aria-controls="resourcesForecast">
+      <div class="icon"><i class="material-icons">keyboard_arrow_down</i></div>
+      <div class="title">Resources for a period of time analysis budget</div>
+    </div>
+    <div class="collapse" id="resourcesForecast">
+      <div class="utilities-body">
+          <app-resource-allocation-assessment></app-resource-allocation-assessment>
+      </div>
+    </div>
+</div>

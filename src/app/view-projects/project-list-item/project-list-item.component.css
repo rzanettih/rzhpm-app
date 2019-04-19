@@ -1,0 +1,56 @@
+.project-name{
+    font-size: 12pt;
+    font-weight: bold;
+    margin: 0;
+    color: #0B486B;
+}
+
+.project-manager{
+    font-size: 10pt;
+    color: #0B486B;
+}
+
+.project-manager-empty{
+    font-size: 10pt;
+    color: #cecece;
+    margin: 0;
+}
+
+.project-list-item-label{
+    font-size: 10pt;
+    margin-right: 15px;
+    color: #5f5f5f;
+    margin: 0;
+}
+
+#projectItemContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "name name name ."
+        "manager startDate deliveryDate ."
+        "workfrontID startDate deliveryDate .";
+}
+
+#projectName{
+    grid-area: name;
+    margin-bottom: 10px;
+}
+
+#projectManager{
+    grid-area: manager;
+}
+
+#workfrontID{
+    grid-area: workfrontID;
+}
+
+#startDate{
+    grid-area: startDate;
+}
+
+#deliveryDate{
+    grid-area: deliveryDate;
+}
