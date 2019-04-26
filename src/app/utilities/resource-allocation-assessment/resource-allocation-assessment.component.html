@@ -30,8 +30,8 @@
         </div>
       </div>
     </div>
-    <div class="all-res-action">
-      <select2 #selectResources [settings]="{adaptDropdownCssClass: selectAllResources}" [options]="allResourcesForDDL" (onSelect)="onSelect($event)"></select2>
+    <div class="all-res-action"> 
+      <select2 #selectResources [options]="allResourcesForDDL" (onSelect)="onSelect($event)"></select2>
     </div>
   </div>
   <div class="sel-res">
