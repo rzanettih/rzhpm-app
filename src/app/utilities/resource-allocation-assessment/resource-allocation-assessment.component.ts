@@ -15,6 +15,8 @@ export class ResourceAllocationAssessmentComponent implements OnInit {
 
   private allSelectedResources: Resource[];
 
+  private allResourcesForDDL: any[];
+
   private resourceAllocationAssessmentObject: {
       dateStart: string,
       dateEnd: string,
@@ -26,6 +28,8 @@ export class ResourceAllocationAssessmentComponent implements OnInit {
     this.allSelectedResources = [];
     this.initObj();
     this.initResourceList();
+
+    
   }
 
   initObj() {
@@ -61,12 +65,21 @@ export class ResourceAllocationAssessmentComponent implements OnInit {
   onAllResourcesFilter(event: any) {
     let textFilter: string = event && event.target ? event.target.value : "";
     this.resourceService.filterListByText(textFilter, this.allSelectedResources);
+
+    this.allResourcesForDDL = this.resourceService.listOfAllResources.map(resource => {
+      return {id: resource.id, text: resource.fullName};
+    });
+
   }
 
   onSelectResource(resource: Resource){
     this.allSelectedResources.push(resource);
     let textFilter: string = (<HTMLInputElement>document.getElementById("txtAllResourcesFilter")).value;
     this.resourceService.filterListByText(textFilter, this.allSelectedResources);
+  }
+
+  onSelect(event: any) {
+    console.log(event);
   }
 
 } 

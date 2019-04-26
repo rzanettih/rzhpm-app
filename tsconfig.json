@@ -18,5 +18,10 @@
       "es2018",
       "dom"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "node_modules/angular-select2-component/src/*.ts",
+    "node_modules/angular-select2-component/index.ts"
+  ]
 }

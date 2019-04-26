@@ -205,3 +205,7 @@
 .out-label {grid-area: out-label}
 .in {grid-area: in}
 .out {grid-area: out}
+
+.selectAllResources {
+    width: 200px;
+}

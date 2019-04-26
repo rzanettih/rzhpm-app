@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { AlertModule, ButtonsModule, PopoverModule } from 'ngx-bootstrap';
 
 
@@ -17,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Select2Component } from "angular-select2-component";
  
 import { ToastrModule } from 'ngx-toastr';
 import { NewResourceComponent } from './view-resources/new-resource/new-resource.component';
@@ -26,6 +26,7 @@ import { ProjectListItemComponent } from './view-projects/project-list-item/proj
 import { UtilitiesComponent } from './utilities/utilities.component';
 import { ResourceAllocationAssessmentComponent } from './utilities/resource-allocation-assessment/resource-allocation-assessment.component';
 
+import { NgModule } from '@angular/core';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ResourceAllocationAssessmentComponent } from './utilities/resource-allo
     NewProjectComponent,
     ProjectListItemComponent,
     UtilitiesComponent,
-    ResourceAllocationAssessmentComponent
+    ResourceAllocationAssessmentComponent,
+    Select2Component
   ],
   imports: [
     BrowserModule,
